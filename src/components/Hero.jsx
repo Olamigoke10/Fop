@@ -21,7 +21,10 @@ const Hero = () => {
         <img src={HeroImg} alt="" srcset="" className='w-[580px] rounded-md'/>
       </div>
 
+
+      <hr />
     </div>
+
   )
 }
 
