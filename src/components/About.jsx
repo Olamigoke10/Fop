@@ -3,14 +3,14 @@ import HeroImg from "../assets/images/bible.jpeg"
 
 const About = () => {
   return (
-    <div className='w-[1240px] mx-auto my-9'>
+    <div className='w-full lg:w-[1240px] mx-auto my-9'>
       <div className='my-5'>
-        <h2 className='font-bold text-3xl'>About</h2>
+        <h2 className='font-bold text-3xl text-center lg:text-left'>About</h2>
       </div>
 
-    <div className='flex gap-4'>
-      <div className='flex w-[600px]'>
-        <img src={HeroImg} alt="" srcset="" className='w-[120px] rounded-md' />
+    <div className='lg:flex gap-4'>
+      <div className='flex lg:max-w-[600px] my-3 p-5'>
+        <img src={HeroImg} alt="" srcset="" className='w-[100px] rounded-md' />
 
         <div className='mx-3'>
             <h2 className='font-extrabold'>OUR FELLOWSHIP</h2>
@@ -19,8 +19,8 @@ const About = () => {
         </div>
       </div>
 
-      <div className='flex w-[600px]'>
-        <img src={HeroImg} alt="" srcset="" className='w-[120px] rounded-md' />
+      <div className='flex lg:max-w-[600px] my-3 p-5'>
+        <img src={HeroImg} alt="" srcset="" className='w-[100px] rounded-md ' />
 
         <div className='mx-3'>
             <h2 className='font-extrabold'>OUR PURPOSE</h2>
