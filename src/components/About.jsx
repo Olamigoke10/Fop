@@ -10,7 +10,7 @@ const About = () => {
 
     <div className='lg:flex gap-4'>
       <div className='flex lg:max-w-[600px] my-3 p-5'>
-        <img src={HeroImg} alt="" srcset="" className='w-[100px] rounded-md' />
+        <img src={HeroImg} alt="" srcset="" className='w-[100px] h-[100px] rounded-md' />
 
         <div className='mx-3'>
             <h2 className='font-extrabold'>OUR FELLOWSHIP</h2>
@@ -20,7 +20,7 @@ const About = () => {
       </div>
 
       <div className='flex lg:max-w-[600px] my-3 p-5'>
-        <img src={HeroImg} alt="" srcset="" className='w-[100px] rounded-md ' />
+        <img src={HeroImg} alt="" srcset="" className='w-[100px] h-[100px] rounded-md ' />
 
         <div className='mx-3'>
             <h2 className='font-extrabold'>OUR PURPOSE</h2>
