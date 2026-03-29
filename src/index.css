@@ -26,3 +26,33 @@
     @apply outline-2 outline-offset-2 outline-amber-400;
   }
 }
+
+@layer components {
+  .skip-link {
+    @apply absolute left-[-9999px] top-4 z-[100] rounded-lg bg-amber-300 px-4 py-2.5 text-sm font-bold text-zinc-950 shadow-lg;
+  }
+
+  .skip-link:focus {
+    @apply left-4 outline outline-2 outline-offset-2 outline-zinc-950;
+  }
+}
+
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  main {
+    @apply max-w-none shadow-none;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.7rem;
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after {
+    content: "";
+  }
+}

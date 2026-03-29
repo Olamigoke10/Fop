@@ -1,42 +1,57 @@
 import { useState } from 'react'
 import { Bars3BottomLeftIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { NavLink } from 'react-router-dom'
+import { useI18n } from '../context/I18nContext'
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About us', href: '#about' },
-  { label: 'Sermons', href: '#sermons' },
-  { label: 'Blog', href: '#blog' },
+  { to: '/', labelKey: 'nav.home', end: true },
+  { to: '/about', labelKey: 'nav.about' },
+  { to: '/sermons', labelKey: 'nav.sermons' },
+  { to: '/blog', labelKey: 'nav.blog' },
 ]
 
-const Navbar = () => {
+const linkClass = ({ isActive }) =>
+  [
+    'transition',
+    isActive ? 'text-amber-300' : 'text-amber-100/90 hover:text-amber-300',
+  ].join(' ')
+
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { t, language, toggleLanguage } = useI18n()
 
   const closeMobile = () => setMobileOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur-md print:hidden">
       <div className="relative flex h-16 w-full items-center justify-between px-4 md:px-8">
-        <a
-          href="#home"
+        <NavLink
+          to="/"
           className="font-bold tracking-tight text-amber-300 transition hover:text-amber-200"
           onClick={closeMobile}
         >
           FLAMES<span className="px-1.5 text-white">OF</span>POWER
-        </a>
+        </NavLink>
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex gap-8 text-sm font-semibold uppercase tracking-wide text-amber-100/90">
-            {navItems.map(({ label, href }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="transition hover:text-amber-300"
-                >
-                  {label}
-                </a>
+        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
+          <ul className="flex gap-8 text-sm font-semibold uppercase tracking-wide">
+            {navItems.map(({ to, labelKey, end }) => (
+              <li key={to}>
+                <NavLink to={to} end={end} className={linkClass}>
+                  {t(labelKey)}
+                </NavLink>
               </li>
             ))}
           </ul>
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="rounded-lg border border-zinc-600 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-amber-200 transition hover:border-amber-400 hover:text-amber-300"
+            aria-label={t('nav.language')}
+            title={`${t('nav.language')}: ${language === 'en' ? 'English / Pidgin' : 'Pidgin / English'}`}
+          >
+            {language === 'en' ? 'EN' : 'PCM'}
+          </button>
         </nav>
 
         <button
@@ -58,22 +73,37 @@ const Navbar = () => {
           aria-label="Mobile"
         >
           <ul className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide">
-            {navItems.map(({ label, href }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="block rounded-lg px-3 py-3 text-amber-100 transition hover:bg-zinc-800 hover:text-amber-300"
+            {navItems.map(({ to, labelKey, end }) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  end={end}
+                  className={({ isActive }) =>
+                    `block rounded-lg px-3 py-3 transition hover:bg-zinc-800 ${
+                      isActive ? 'bg-zinc-800 text-amber-300' : 'text-amber-100 hover:text-amber-300'
+                    }`
+                  }
                   onClick={closeMobile}
                 >
-                  {label}
-                </a>
+                  {t(labelKey)}
+                </NavLink>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={() => {
+                  toggleLanguage()
+                  closeMobile()
+                }}
+                className="w-full rounded-lg px-3 py-3 text-left text-amber-100 transition hover:bg-zinc-800 hover:text-amber-300"
+              >
+                {t('nav.language')}: {language === 'en' ? 'English → Pidgin' : 'Pidgin → English'}
+              </button>
+            </li>
           </ul>
         </nav>
       )}
     </header>
   )
 }
-
-export default Navbar
