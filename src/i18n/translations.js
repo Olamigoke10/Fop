@@ -5,6 +5,7 @@ const en = {
     sermons: 'Sermons',
     blog: 'Blog',
     language: 'Language',
+    brandTagline: 'Ministry',
   },
   footer: {
     brand: 'Flames of Power',
@@ -131,6 +132,7 @@ const pcm = {
     sermons: 'Sermon dem',
     blog: 'Blog',
     language: 'Langwej',
+    brandTagline: 'Ministry',
   },
   hero: {
     ...en.hero,
